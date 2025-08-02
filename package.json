@@ -36,7 +36,10 @@
   "license": "MIT",
   "packageManager": "pnpm@10.12.4",
   "files": [
-    "built"
+    "built",
+    "LICENSE-CODE",
+    "LICENSE-FLUENT-EMOJI",
+    "LICENSE-TWEMOJI"
   ],
   "devDependencies": {
     "@discordapp/twemoji": "^16.0.1",
