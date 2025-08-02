@@ -1,0 +1,21 @@
+{
+  "name": "@misskey-dev/emojis",
+  "version": "0.0.1",
+  "description": "A set of emojis and definitions intended for use in Misskey.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Misskey Project",
+  "license": "MIT",
+  "packageManager": "pnpm@10.12.4",
+  "files": [
+    "built"
+  ],
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "execa": "^9.6.0",
+    "typescript": "^5.9.2"
+  }
+}
