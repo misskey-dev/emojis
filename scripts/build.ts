@@ -1,11 +1,8 @@
 import { execa } from 'execa';
-import { createRequire } from 'module';
 import { promises as fsp } from 'fs';
 import { dirname, resolve } from 'path';
 import glob from 'tiny-glob';
 import sharp from 'sharp';
-
-const require = createRequire(import.meta.url);
 
 const builtDir = resolve(import.meta.dirname, '../built');
 
