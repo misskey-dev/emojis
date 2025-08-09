@@ -19,6 +19,7 @@ export default defineBuildConfig({
         },
     ],
     outDir: './built',
+    failOnWarn: false,
     declaration: true,
     clean: true,
     rollup: {

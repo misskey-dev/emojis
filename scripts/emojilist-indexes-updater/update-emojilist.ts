@@ -1,6 +1,8 @@
 import * as fs from 'node:fs';
 import type { Emoji } from './parse-emoji-test.js';
 
+export type EmojiList = [string, string, number][];
+
 const fitzpatrick = [0x1F3FB, 0x1F3FC, 0x1F3FD, 0x1F3FE, 0x1F3FF]
     .map((codePoint) => String.fromCodePoint(codePoint));
 
@@ -10,11 +12,21 @@ const maleSign = '\u2642';
 const rightSign = '\u27A1';
 const vs16 = '\uFE0F';
 
+function prettifyEmojiListJson(emojilist: EmojiList): string {
+    const json = JSON.stringify(emojilist);
+    return json
+        .replace('[[', '[\n\t[')
+        .replaceAll(':[', ': [')
+        .replaceAll(/,(?=["\d])/g, ', ')
+        .replaceAll('],', '],\n\t')
+        .replace(']]', ']\n]\n');
+}
+
 export function updateEmojilist(
     emojiTestEmojis: Emoji[],
     emojilistPath: string,
-): [string, string, number][] {
-    const emojilist = JSON.parse(fs.readFileSync(emojilistPath, { encoding: 'utf-8' })) as [string, string, number][];
+): EmojiList {
+    const emojilist = JSON.parse(fs.readFileSync(emojilistPath, { encoding: 'utf-8' })) as EmojiList;
     const emojilistEmojis = new Set(emojilist.map((e) => e[0] as string));
     for (let i = 0; i < emojiTestEmojis.length; i++) {
         const emoji = emojiTestEmojis[i];
@@ -178,12 +190,12 @@ export function updateEmojilist(
             emojilistEmojis.add(emoji.emoji);
         }
     }
-    fs.writeFileSync(emojilistPath, JSON.stringify(emojilist), 'utf-8');
+    fs.writeFileSync(emojilistPath, prettifyEmojiListJson(emojilist), 'utf-8');
     return emojilist;
 }
 
 export function checkDuplicateEmojis(
-    emojilist: [string, string, number][],
+    emojilist: EmojiList,
 ): void {
     const emojis = new Map();
     const names = new Map();

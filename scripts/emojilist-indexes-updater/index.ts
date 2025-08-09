@@ -27,6 +27,8 @@ async function main(): Promise<void> {
 			unicodeEmojiIndexesPath,
 		);
 	}
+
+	console.log('Emojilist and indexes updated successfully. Please check manually if the changes are correct.');
 }
 
 await main();
