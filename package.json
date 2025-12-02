@@ -1,6 +1,6 @@
 {
   "name": "@misskey-dev/emojis",
-  "version": "16.0.0",
+  "version": "17.0.0",
   "description": "A set of emojis and definitions intended for use in Misskey.",
   "main": "built/index.cjs",
   "module": "built/index.mjs",
@@ -34,7 +34,7 @@
   },
   "author": "Misskey Project",
   "license": "MIT AND CC-BY-4.0",
-  "packageManager": "pnpm@10.12.4",
+  "packageManager": "pnpm@10.24.0",
   "files": [
     "built",
     "LICENSE-CODE",
@@ -43,18 +43,17 @@
     "LICENSE-TWEMOJI-PARSER"
   ],
   "devDependencies": {
-    "@discordapp/twemoji": "^16.0.1",
-    "@twemoji/parser": "^16.0.0",
-    "@types/node": "^24.1.0",
-    "cldr-annotations-derived-full": "^47.0.0",
-    "cldr-annotations-full": "^47.0.0",
-    "execa": "^9.6.0",
+    "@twemoji/parser": "^17.0.1",
+    "@types/node": "^24.10.1",
+    "cldr-annotations-derived-full": "^48.0.0",
+    "cldr-annotations-full": "^48.0.0",
+    "execa": "^9.6.1",
     "kuromojin": "^3.0.1",
-    "sharp": "^0.34.3",
+    "sharp": "^0.34.5",
     "tiny-glob": "^0.2.9",
-    "tsx": "^4.20.3",
-    "typescript": "^5.9.2",
-    "unbuild": "^3.6.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "unbuild": "^3.6.1",
     "wanakana": "^5.3.1"
   },
   "pnpm": {

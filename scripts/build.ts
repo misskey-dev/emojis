@@ -6,7 +6,7 @@ import sharp from 'sharp';
 
 const builtDir = resolve(import.meta.dirname, '../built');
 
-const UNICODE_SKIN_TONES = {
+const UNICODE_SKIN_TONES: Record<string, string> = {
     '1f3ff': 'Dark',
     '1f3fe': 'Medium-Dark',
     '1f3fd': 'Medium',
@@ -43,7 +43,7 @@ async function build() {
     });
 
     // 2. Twemojiコピー
-    const twemojiSrc = resolve(import.meta.dirname, './../node_modules/@discordapp/twemoji/dist/svg');
+    const twemojiSrc = resolve(import.meta.dirname, './../twemoji/assets/svg');
     const twemojiDest = resolve(builtDir, 'twemoji');
     await fsp.mkdir(twemojiDest, { recursive: true });
     await fsp.cp(twemojiSrc, twemojiDest, { recursive: true });
