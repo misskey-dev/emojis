@@ -47,8 +47,6 @@ const jaAnnotationsDerivedMap = new Map(Object.entries(jaAnnotationsDerived.anno
 function prettifyEmojiIndexJson(emojiIndex: EmojiIndex): string {
     const json = JSON.stringify(Object.fromEntries(emojiIndex));
     return json
-        .replace(/:/g, ': ')
-        .replace(/,/g, ', ')
         .replace(/^{/, '{\n\t')
         .replace(/\],\s*/g, '],\n\t')
         .replace(/]}$/, ']\n}') + '\n';
