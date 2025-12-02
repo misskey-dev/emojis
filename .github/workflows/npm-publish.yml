@@ -19,24 +19,23 @@ jobs:
         node-version: [22.17.0]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+        submodules: 'recursive'
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
           run_install: false
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
           registry-url: 'https://registry.npmjs.org'
       - name: Publish package
         run: |
-          corepack enable
           pnpm i --frozen-lockfile
           pnpm build
-          pnpm publish --access public --no-git-checks --provenance
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+      - name: Update npm
+        run: npm install -g npm@latest
+      - name: Publish to npm
+        run: pnpm publish --access public --no-git-checks --provenance
