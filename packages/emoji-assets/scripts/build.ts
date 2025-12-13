@@ -13,6 +13,8 @@ const UNICODE_SKIN_TONES: Record<string, string> = {
 };
 
 const UNICODE_SKIN_TONE_REGEX = /(1f3ff|1f3fe|1f3fd|1f3fc|1f3fb)/;
+const VS16 = 'fe0f';
+const ZERO_WIDTH_JOINER = '200d';
 
 type FluentEmojiDefinition = {
     cldr: string;
@@ -31,6 +33,15 @@ async function processFluentEmojiImage(src: string, dest: string) {
     await sharp(src)
         .resize({ width: 64, height: 64, fit: 'inside' })
         .toFile(dest);
+}
+
+// taken from @twemoji/parser to normalize fluent-emoji filenames
+function removeVS16s(unicodes: string[]) {
+    if (unicodes.includes(ZERO_WIDTH_JOINER)) {
+        return unicodes;
+    } else {
+        return unicodes.filter((u) => u !== VS16);
+    }
 }
 
 async function build() {
@@ -79,13 +90,13 @@ async function build() {
                     return;
                 }
 
-                const dest = resolve(fluentEmojiDest, `${unicode.split(' ').join('-').toLowerCase()}.png`);
+                const dest = resolve(fluentEmojiDest, `${removeVS16s(unicode.toLowerCase().split(' ')).join('-')}.png`);
                 await processFluentEmojiImage(src[0], dest);
             });
 
             await Promise.all(emojiWritePromises);
         } else {
-            const unicode = defJson.unicode.split(' ').join('-').toLowerCase();
+            const unicode = removeVS16s(defJson.unicode.toLowerCase().split(' ')).join('-');
             const dir = resolve(dirname(definition), `3D`);
             const src = await Array.fromAsync(fsp.glob(`${dir}/*.png`));
 
