@@ -1,5 +1,4 @@
 import { defineBuildConfig } from 'unbuild';
-import glob from 'tiny-glob';
 import { resolve, basename } from 'node:path';
 import { promises as fsp } from 'node:fs';
 
@@ -28,7 +27,7 @@ export default defineBuildConfig({
     },
     hooks: {
         'build:before': async () => {
-            const licensesToCopy = await glob('../../LICENSE*', { cwd: import.meta.dirname });
+            const licensesToCopy = await Array.fromAsync(fsp.glob('../../LICENSE*', { cwd: import.meta.dirname }));
             const dest = resolve(import.meta.dirname);
             await Promise.all(licensesToCopy.map(async (src) => {
                 const filename = basename(src);
@@ -45,7 +44,7 @@ export default defineBuildConfig({
             const emojilistDtsDest = resolve(ctx.options.outDir, 'emojilist.d.ts');
             promises.push(fsp.copyFile(emojilistDtsSrc, emojilistDtsDest));
 
-            const indexesToCopy = await glob('./src/indexes/*.json', { cwd: import.meta.dirname });
+            const indexesToCopy = await Array.fromAsync(fsp.glob('./src/indexes/*.json', { cwd: import.meta.dirname }));
             const indexesDest = resolve(ctx.options.outDir, 'indexes');
             promises.push(...indexesToCopy.map(async (src) => {
                 const filename = basename(src);

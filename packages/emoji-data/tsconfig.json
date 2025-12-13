@@ -13,6 +13,7 @@
 		]
 	},
 	"include": [
+		"build.config.ts",
 		"src/**/*.ts",
 		"scripts/**/*.ts"
 	],

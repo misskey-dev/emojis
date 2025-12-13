@@ -1,6 +1,5 @@
-import { promises as fsp } from 'fs';
+import { promises as fsp, existsSync } from 'fs';
 import { dirname, resolve } from 'path';
-import glob from 'tiny-glob';
 import sharp from 'sharp';
 
 const assetsBuiltDir = resolve(import.meta.dirname, './../built');
@@ -35,27 +34,35 @@ async function processFluentEmojiImage(src: string, dest: string) {
 }
 
 async function build() {
-    // 1. ライセンスのコピー
-    const licensesToCopy = await glob(`${import.meta.dirname}/../../../LICENSE*`);
+    // 1. 出力ディレクトリのクリア
+    if (existsSync(assetsBuiltDir)) {
+        console.log(`Removing existing assets build directory at ${assetsBuiltDir}`);
+        await fsp.rm(assetsBuiltDir, { recursive: true, force: true });
+    }
+    await fsp.mkdir(assetsBuiltDir, { recursive: true });
+    console.log(`Created assets build directory at ${assetsBuiltDir}`);
+
+    // 2. ライセンスのコピー
+    const licensesToCopy = await Array.fromAsync(fsp.glob(`${import.meta.dirname}/../../../LICENSE*`));
     const dest = resolve(import.meta.dirname, './../');
     await Promise.all(licensesToCopy.map(async (src) => {
         const filename = src.split(/[\\\/]/).pop()!;
-        console.log(`Copying license file: ${filename}`);
         await fsp.copyFile(src, resolve(dest, filename));
     }));
+    console.log(`Copied licenses to ${dest}`);
 
-    // 2. Twemojiコピー
+    // 3. Twemojiコピー
     const twemojiSrc = resolve(import.meta.dirname, '../../../twemoji/assets/svg');
     const twemojiDest = resolve(assetsBuiltDir, 'twemoji');
     await fsp.mkdir(twemojiDest, { recursive: true });
     await fsp.cp(twemojiSrc, twemojiDest, { recursive: true });
     console.log(`Copied Twemoji SVGs from ${twemojiSrc} to ${twemojiDest}`);
 
-    // 3. Fluent Emojiのコピー
-    const definitions = await glob(`${import.meta.dirname}/../../../fluent-emoji/assets/*/metadata.json`);
+    // 4. Fluent Emojiのコピー
+    const definitions = fsp.glob(`${import.meta.dirname}/../../../fluent-emoji/assets/*/metadata.json`);
     const fluentEmojiDest = resolve(assetsBuiltDir, 'fluent-emoji');
     await fsp.mkdir(fluentEmojiDest, { recursive: true });
-    for (const definition of definitions) {
+    for await (const definition of definitions) {
         const defJson = JSON.parse(await fsp.readFile(definition, 'utf-8')) as FluentEmojiDefinition;
         if (defJson.unicodeSkintones != null) {
             const emojiWritePromises = defJson.unicodeSkintones.filter((unicode) => Object.keys(UNICODE_SKIN_TONES).some((tone) => unicode.includes(tone))).map(async (unicode) => {
@@ -66,10 +73,7 @@ async function build() {
                 }
 
                 const dir = resolve(dirname(definition), `${UNICODE_SKIN_TONES[tone[0]]}/3D`);
-                const src = await glob(`${dir}/*.png`).catch((error) => {
-                    console.error(`Error finding images in ${dir}:`, error)
-                    return [];
-                });
+                const src = await Array.fromAsync(fsp.glob(`${dir}/*.png`));
                 if (src.length === 0) {
                     console.error(`No image found for ${unicode} in ${dir}`);
                     return;
@@ -77,14 +81,13 @@ async function build() {
 
                 const dest = resolve(fluentEmojiDest, `${unicode.split(' ').join('-').toLowerCase()}.png`);
                 await processFluentEmojiImage(src[0], dest);
-                console.log(`Processed Fluent Emoji: ${unicode} -> ${dest}`);
             });
 
             await Promise.all(emojiWritePromises);
         } else {
             const unicode = defJson.unicode.split(' ').join('-').toLowerCase();
             const dir = resolve(dirname(definition), `3D`);
-            const src = await glob(`${dir}/*.png`);
+            const src = await Array.fromAsync(fsp.glob(`${dir}/*.png`));
 
             if (src.length === 0) {
                 console.error(`No image found for ${unicode} in ${dir}`);
@@ -93,9 +96,9 @@ async function build() {
 
             const dest = resolve(fluentEmojiDest, `${unicode}.png`);
             await processFluentEmojiImage(src[0], dest);
-            console.log(`Processed Fluent Emoji: ${defJson.unicode} -> ${dest}`);
         }
     }
+    console.log(`Copied Fluent Emoji images to ${fluentEmojiDest}`);
 }
 
 build().catch((error) => {
