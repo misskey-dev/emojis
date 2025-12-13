@@ -1,4 +1,4 @@
-# @misskey-dev/emojis
+# Emojis for Misskey
 
 Misskey で使用する絵文字関連をまとめたパッケージです。
 

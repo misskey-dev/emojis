@@ -8,12 +8,30 @@ importers:
 
   .:
     devDependencies:
-      '@twemoji/parser':
-        specifier: ^17.0.1
-        version: 17.0.1
       '@types/node':
         specifier: ^24.10.1
         version: 24.10.1
+      tiny-glob:
+        specifier: ^0.2.9
+        version: 0.2.9
+      tsx:
+        specifier: ^4.21.0
+        version: 4.21.0
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
+  packages/emoji-assets:
+    devDependencies:
+      sharp:
+        specifier: ^0.34.5
+        version: 0.34.5
+
+  packages/emoji-data:
+    devDependencies:
+      '@twemoji/parser':
+        specifier: ^17.0.1
+        version: 17.0.1
       cldr-annotations-derived-full:
         specifier: ^48.0.0
         version: 48.0.0
@@ -26,18 +44,6 @@ importers:
       kuromojin:
         specifier: ^3.0.1
         version: 3.0.1
-      sharp:
-        specifier: ^0.34.5
-        version: 0.34.5
-      tiny-glob:
-        specifier: ^0.2.9
-        version: 0.2.9
-      tsx:
-        specifier: ^4.21.0
-        version: 4.21.0
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
       unbuild:
         specifier: ^3.6.1
         version: 3.6.1(typescript@5.9.3)

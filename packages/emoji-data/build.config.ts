@@ -27,12 +27,23 @@ export default defineBuildConfig({
         inlineDependencies: ['@twemoji/parser'],
     },
     hooks: {
+        'build:before': async () => {
+            const licensesToCopy = await glob('../../LICENSE*', { cwd: import.meta.dirname });
+            const dest = resolve(import.meta.dirname);
+            await Promise.all(licensesToCopy.map(async (src) => {
+                const filename = basename(src);
+                await fsp.copyFile(src, dest + '/' + filename);
+            }));
+        },
         'build:done': async (ctx) => {
             const promises: Promise<void>[] = [];
 
             const emojilistSrc = resolve(import.meta.dirname, './src/emojilist.json');
             const emojilistDest = resolve(ctx.options.outDir, 'emojilist.json');
             promises.push(fsp.copyFile(emojilistSrc, emojilistDest));
+            const emojilistDtsSrc = resolve(import.meta.dirname, './src/emojilist.d.ts');
+            const emojilistDtsDest = resolve(ctx.options.outDir, 'emojilist.d.ts');
+            promises.push(fsp.copyFile(emojilistDtsSrc, emojilistDtsDest));
 
             const indexesToCopy = await glob('./src/indexes/*.json', { cwd: import.meta.dirname });
             const indexesDest = resolve(ctx.options.outDir, 'indexes');

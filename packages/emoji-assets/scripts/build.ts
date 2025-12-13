@@ -1,10 +1,9 @@
-import { execa } from 'execa';
 import { promises as fsp } from 'fs';
 import { dirname, resolve } from 'path';
 import glob from 'tiny-glob';
 import sharp from 'sharp';
 
-const builtDir = resolve(import.meta.dirname, '../built');
+const assetsBuiltDir = resolve(import.meta.dirname, './../built');
 
 const UNICODE_SKIN_TONES: Record<string, string> = {
     '1f3ff': 'Dark',
@@ -36,22 +35,25 @@ async function processFluentEmojiImage(src: string, dest: string) {
 }
 
 async function build() {
-    // 1. JS定義部分のビルド
-    await execa('pnpm', ['run', 'build:def'], {
-        cwd: import.meta.dirname,
-        stdio: 'inherit',
-    });
+    // 1. ライセンスのコピー
+    const licensesToCopy = await glob(`${import.meta.dirname}/../../../LICENSE*`);
+    const dest = resolve(import.meta.dirname, './../');
+    await Promise.all(licensesToCopy.map(async (src) => {
+        const filename = src.split(/[\\\/]/).pop()!;
+        console.log(`Copying license file: ${filename}`);
+        await fsp.copyFile(src, resolve(dest, filename));
+    }));
 
     // 2. Twemojiコピー
-    const twemojiSrc = resolve(import.meta.dirname, './../twemoji/assets/svg');
-    const twemojiDest = resolve(builtDir, 'twemoji');
+    const twemojiSrc = resolve(import.meta.dirname, '../../../twemoji/assets/svg');
+    const twemojiDest = resolve(assetsBuiltDir, 'twemoji');
     await fsp.mkdir(twemojiDest, { recursive: true });
     await fsp.cp(twemojiSrc, twemojiDest, { recursive: true });
     console.log(`Copied Twemoji SVGs from ${twemojiSrc} to ${twemojiDest}`);
 
     // 3. Fluent Emojiのコピー
-    const definitions = await glob(`${import.meta.dirname}/../fluent-emoji/assets/*/metadata.json`);
-    const fluentEmojiDest = resolve(builtDir, 'fluent-emoji');
+    const definitions = await glob(`${import.meta.dirname}/../../../fluent-emoji/assets/*/metadata.json`);
+    const fluentEmojiDest = resolve(assetsBuiltDir, 'fluent-emoji');
     await fsp.mkdir(fluentEmojiDest, { recursive: true });
     for (const definition of definitions) {
         const defJson = JSON.parse(await fsp.readFile(definition, 'utf-8')) as FluentEmojiDefinition;

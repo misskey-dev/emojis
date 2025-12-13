@@ -38,4 +38,6 @@ jobs:
       - name: Update npm
         run: npm install -g npm@latest
       - name: Publish to npm
-        run: pnpm publish --access public --no-git-checks --provenance
+        run: |
+          pnpm --filter @misskey-dev/emoji-assets publish --access public --no-git-checks --provenance
+          pnpm --filter @misskey-dev/emoji-data publish --access public --no-git-checks --provenance

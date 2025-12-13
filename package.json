@@ -1,36 +1,12 @@
 {
-  "name": "@misskey-dev/emojis",
+  "name": "emojis-monorepo",
   "version": "17.0.0",
   "description": "A set of emojis and definitions intended for use in Misskey.",
-  "main": "built/index.cjs",
-  "module": "built/index.mjs",
-  "types": "built/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./built/index.mjs",
-      "require": "./built/index.cjs",
-      "types": "./built/index.d.ts"
-    },
-    "./emojilist.json": "./built/emojilist.json",
-    "./regex": {
-      "import": "./built/regex/index.mjs",
-      "require": "./built/regex/index.cjs",
-      "types": "./built/regex/index.d.ts"
-    },
-    "./indexes/*": {
-      "import": "./built/indexes/*.mjs",
-      "require": "./built/indexes/*.cjs",
-      "types": "./built/indexes/*.d.ts"
-    },
-    "./indexes/*.json": "./built/indexes/*.json",
-    "./fluent-emoji/*.png": "./built/fluent-emoji/*.png",
-    "./twemoji/*.svg": "./built/twemoji/*.svg"
-  },
+  "private": true,
   "type": "module",
   "scripts": {
-    "build:def": "unbuild",
-    "build": "tsx ./scripts/build.ts",
-    "update-definitions": "tsx ./scripts/emojilist-indexes-updater/index.ts"
+    "build": "pnpm -r run build",
+    "update-definitions": "pnpm --filter @misskey-dev/emoji-data run update-definitions"
   },
   "author": "Misskey Project",
   "license": "MIT AND CC-BY-4.0",
@@ -43,18 +19,10 @@
     "LICENSE-TWEMOJI-PARSER"
   ],
   "devDependencies": {
-    "@twemoji/parser": "^17.0.1",
     "@types/node": "^24.10.1",
-    "cldr-annotations-derived-full": "^48.0.0",
-    "cldr-annotations-full": "^48.0.0",
-    "execa": "^9.6.1",
-    "kuromojin": "^3.0.1",
-    "sharp": "^0.34.5",
     "tiny-glob": "^0.2.9",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3",
-    "unbuild": "^3.6.1",
-    "wanakana": "^5.3.1"
+    "typescript": "^5.9.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
