@@ -1,6 +1,7 @@
 import { defineBuildConfig } from 'unbuild';
 import { resolve, basename } from 'node:path';
 import { promises as fsp } from 'node:fs';
+import { extractTwemojiRegex } from './scripts/extract-twemoji-regex.js';
 
 export default defineBuildConfig({
     entries: [
@@ -23,7 +24,6 @@ export default defineBuildConfig({
     clean: true,
     rollup: {
         emitCJS: true,
-        inlineDependencies: ['@twemoji/parser'],
     },
     hooks: {
         'build:before': async () => {
@@ -33,6 +33,7 @@ export default defineBuildConfig({
                 const filename = basename(src);
                 await fsp.copyFile(src, dest + '/' + filename);
             }));
+            await extractTwemojiRegex();
         },
         'build:done': async (ctx) => {
             const promises: Promise<void>[] = [];

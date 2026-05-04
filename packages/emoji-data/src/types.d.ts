@@ -1,4 +1,4 @@
 declare module '@twemoji/parser/dist/lib/regex.js' {
-    const emojiRegex: RegExp;
+    const emojiRegex: { default: RegExp };
     export default emojiRegex;
 }
