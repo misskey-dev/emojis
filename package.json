@@ -10,7 +10,7 @@
   },
   "author": "Misskey Project",
   "license": "MIT AND CC-BY-4.0",
-  "packageManager": "pnpm@10.24.0",
+  "packageManager": "pnpm@10.33.2",
   "files": [
     "built",
     "LICENSE-CODE",
@@ -19,7 +19,7 @@
     "LICENSE-TWEMOJI-PARSER"
   ],
   "devDependencies": {
-    "@types/node": "^24.10.3",
+    "@types/node": "^24.12.2",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },

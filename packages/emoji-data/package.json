@@ -35,7 +35,7 @@
   },
   "author": "Misskey Project",
   "license": "MIT AND CC-BY-4.0 AND Unicode-3.0",
-  "packageManager": "pnpm@10.24.0",
+  "packageManager": "pnpm@10.33.2",
   "files": [
     "built",
     "LICENSE-CODE",
@@ -46,8 +46,8 @@
   ],
   "devDependencies": {
     "@twemoji/parser": "^17.0.1",
-    "cldr-annotations-derived-full": "^48.0.0",
-    "cldr-annotations-full": "^48.0.0",
+    "cldr-annotations-derived-full": "^48.2.0",
+    "cldr-annotations-full": "^48.2.0",
     "execa": "^9.6.1",
     "kuromojin": "^3.0.1",
     "unbuild": "^3.6.1",

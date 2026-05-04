@@ -12,7 +12,7 @@
   },
   "author": "Misskey Project",
   "license": "MIT AND CC-BY-4.0",
-  "packageManager": "pnpm@10.24.0",
+  "packageManager": "pnpm@10.33.2",
   "files": [
     "built",
     "LICENSE-CODE",
