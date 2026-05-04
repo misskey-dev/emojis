@@ -10,10 +10,13 @@
 		"esModuleInterop": true,
 		"lib": [
 			"esnext",
+		],
+		"types": [
+			"node"
 		]
 	},
 	"include": [
-		"build.config.ts",
+		"tsdown.config.ts",
 		"src/**/*.ts",
 		"scripts/**/*.ts"
 	],

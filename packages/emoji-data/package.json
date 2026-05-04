@@ -17,20 +17,20 @@
       "types": "./built/emojilist.d.ts"
     },
     "./regex": {
-      "import": "./built/regex/index.mjs",
-      "require": "./built/regex/index.cjs",
-      "types": "./built/regex/index.d.ts"
+      "import": "./built/regex.mjs",
+      "require": "./built/regex.cjs",
+      "types": "./built/regex.d.ts"
     },
-    "./indexes/*": {
-      "import": "./built/indexes/*.mjs",
-      "require": "./built/indexes/*.cjs",
-      "types": "./built/indexes/*.d.ts"
+    "./indexes": {
+      "import": "./built/indexes.mjs",
+      "require": "./built/indexes.cjs",
+      "types": "./built/indexes.d.ts"
     },
     "./indexes/*.json": "./built/indexes/*.json"
   },
   "type": "module",
   "scripts": {
-    "build": "unbuild",
+    "build": "tsdown --config-loader unrun",
     "update-definitions": "tsx ./scripts/emojilist-indexes-updater/index.ts"
   },
   "author": "Misskey Project",
@@ -48,9 +48,8 @@
     "@twemoji/parser": "^17.0.1",
     "cldr-annotations-derived-full": "^48.2.0",
     "cldr-annotations-full": "^48.2.0",
-    "execa": "^9.6.1",
     "kuromojin": "^3.0.1",
-    "unbuild": "^3.6.1",
+    "tsdown": "^0.21.10",
     "wanakana": "^5.3.1"
   }
 }
