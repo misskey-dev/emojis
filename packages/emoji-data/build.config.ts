@@ -26,7 +26,7 @@ export default defineBuildConfig({
         emitCJS: true,
     },
     hooks: {
-        'build:before': async () => {
+        'build:prepare': async () => {
             const licensesToCopy = await Array.fromAsync(fsp.glob('../../LICENSE*', { cwd: import.meta.dirname }));
             const dest = resolve(import.meta.dirname);
             await Promise.all(licensesToCopy.map(async (src) => {

@@ -7,10 +7,15 @@ function reconstructRegexString(regex: RegExp): string {
 }
 
 export async function extractTwemojiRegex(): Promise<void> {
-    const outFilePath = resolve(import.meta.dirname, '../src/regex/index.ts');
+    const outFileDir = resolve(import.meta.dirname, '../src/regex');
+    const outFilePath = resolve(outFileDir, 'index.ts');
     
     if (existsSync(outFilePath)) {
         await fsp.rm(outFilePath);
+    }
+
+    if (!existsSync(outFileDir)) {
+        await fsp.mkdir(outFileDir, { recursive: true });
     }
 
     const content = `export const emojiRegex = ${reconstructRegexString(twemojiRegex.default)};\n`;

@@ -2,9 +2,6 @@
   "name": "@misskey-dev/emoji-assets",
   "version": "17.0.0",
   "description": "A set of emoji assets intended for use in Misskey.",
-  "main": "built/index.cjs",
-  "module": "built/index.mjs",
-  "types": "built/index.d.ts",
   "exports": {
     "./fluent-emoji/*.png": "./built/fluent-emoji/*.png",
     "./twemoji/*.svg": "./built/twemoji/*.svg"
