@@ -1,6 +1,6 @@
 {
   "name": "@misskey-dev/emoji-data",
-  "version": "17.0.1",
+  "version": "17.0.2",
   "description": "A set of emoji definitions intended for use in Misskey.",
   "main": "built/index.cjs",
   "module": "built/index.mjs",
@@ -29,6 +29,10 @@
     "./indexes/*.json": "./built/indexes/*.json"
   },
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/misskey-dev/emojis"
+  },
   "scripts": {
     "build": "tsdown --config-loader unrun",
     "update-definitions": "tsx ./scripts/emojilist-indexes-updater/index.ts"
