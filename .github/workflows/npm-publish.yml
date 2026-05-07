@@ -1,0 +1,44 @@
+name: Publish Node.js Package
+
+on:
+  release:
+    types: [created]
+
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    strategy:
+      matrix:
+        node-version: [22.17.0]
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: 'recursive'
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Publish package
+        run: |
+          pnpm i --frozen-lockfile
+          pnpm build
+      - name: Update npm
+        run: npm install -g npm@latest
+      - name: Publish to npm
+        run: |
+          pnpm --filter @misskey-dev/emoji-assets publish --access public --no-git-checks --provenance
+          pnpm --filter @misskey-dev/emoji-data publish --access public --no-git-checks --provenance

@@ -1,0 +1,32 @@
+{
+  "name": "emojis-monorepo",
+  "version": "17.0.0",
+  "description": "A set of emojis and definitions intended for use in Misskey.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "pnpm -r run build",
+    "update-definitions": "pnpm --filter @misskey-dev/emoji-data run update-definitions"
+  },
+  "author": "Misskey Project",
+  "license": "MIT AND CC-BY-4.0",
+  "packageManager": "pnpm@10.33.2",
+  "files": [
+    "built",
+    "LICENSE-CODE",
+    "LICENSE-FLUENT-EMOJI",
+    "LICENSE-TWEMOJI",
+    "LICENSE-TWEMOJI-PARSER"
+  ],
+  "devDependencies": {
+    "@types/node": "^24.12.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"strict": true,
+		"strictFunctionTypes": true,
+		"strictNullChecks": true,
+		"esModuleInterop": true,
+		"lib": [
+			"esnext",
+		],
+		"types": [
+			"node"
+		]
+	},
+	"include": [
+		"tsdown.config.ts",
+		"src/**/*.ts",
+		"scripts/**/*.ts"
+	],
+	"exclude": []
+}
