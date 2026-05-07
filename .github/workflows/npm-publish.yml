@@ -20,7 +20,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
-        submodules: 'recursive'
+        with:
+          submodules: 'recursive'
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
