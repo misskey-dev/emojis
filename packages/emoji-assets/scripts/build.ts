@@ -98,6 +98,19 @@ async function build() {
                 await processFluentEmojiImage(src[0], dest);
             });
 
+            // デフォルト
+            emojiWritePromises.push((async () => {
+                const unicode = normalizeFluentEmojiFilename(defJson.unicode);
+                const dir = resolve(dirname(definition), `Default/3D`);
+                const src = await Array.fromAsync(fsp.glob(`${dir}/*.png`));
+                if (src.length === 0) {
+                    console.error(`No image found for ${unicode} in ${dir}`);
+                    return;
+                }
+                const dest = resolve(fluentEmojiDest, `${unicode}.png`);
+                await processFluentEmojiImage(src[0], dest);
+            })());
+
             await Promise.all(emojiWritePromises);
         } else {
             const unicode = normalizeFluentEmojiFilename(defJson.unicode);
