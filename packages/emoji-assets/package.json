@@ -1,12 +1,16 @@
 {
   "name": "@misskey-dev/emoji-assets",
-  "version": "17.0.1",
+  "version": "17.0.2",
   "description": "A set of emoji assets intended for use in Misskey.",
   "exports": {
     "./fluent-emoji/*.png": "./built/fluent-emoji/*.png",
     "./twemoji/*.svg": "./built/twemoji/*.svg"
   },
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/misskey-dev/emojis"
+  },
   "scripts": {
     "build": "tsx ./scripts/build.ts"
   },
