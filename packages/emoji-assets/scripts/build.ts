@@ -96,7 +96,7 @@ async function build() {
 
             await Promise.all(emojiWritePromises);
         } else {
-            const unicode = removeVS16s(defJson.unicode.toLowerCase().split(' ')).join('-');
+            const unicode = removeVS16s(defJson.unicode.toLowerCase().split(' ')).map((c) => c.replace(/^0+/, '')).join('-');
             const dir = resolve(dirname(definition), `3D`);
             const src = await Array.fromAsync(fsp.glob(`${dir}/*.png`));
 
