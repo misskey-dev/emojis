@@ -18,7 +18,8 @@ export async function extractTwemojiRegex(): Promise<void> {
         await fsp.mkdir(outFileDir, { recursive: true });
     }
 
-    const content = `export const emojiRegex = ${reconstructRegexString('default' in twemojiRegex ? twemojiRegex.default : twemojiRegex)};\n`;
+    const content = `// Auto-generated from @twemoji/parser/dist/lib/regex.js. DO NOT EDIT MANUALLY.
+export const emojiRegex = ${reconstructRegexString('default' in twemojiRegex ? twemojiRegex.default : twemojiRegex)};\n`;
 
     await fsp.writeFile(outFilePath, content, 'utf-8');
     console.log(`Twemoji regex has been extracted and written to ${outFilePath}`);
