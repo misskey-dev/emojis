@@ -1,8 +1,16 @@
 This repository contains works by multiple copyright holders, which are
 available under the licenses stated in the following files, respectively:
 
+## `@misskey-dev/emoji-data`
+
 - Unicode CLDR: LICENSE-CLDR
-- Fluent Emoji: LICENSE-FLUENT-EMOJI
-- Twemoji: LICENSE-TWEMOJI
 - Twemoji parser: LICENSE-TWEMOJI-PARSER
 - Build code: LICENSE-CODE
+
+## `@misskey-dev/emoji-assets`
+
+- Fluent Emoji: LICENSE-FLUENT-EMOJI
+- Twemoji: LICENSE-TWEMOJI
+- Build code: LICENSE-CODE
+
+Please note that there may be 
