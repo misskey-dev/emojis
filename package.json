@@ -9,7 +9,7 @@
     "update-definitions": "pnpm --filter @misskey-dev/emoji-data run update-definitions"
   },
   "author": "Misskey Project",
-  "license": "MIT AND CC-BY-4.0",
+  "license": "See LICENSE for details.",
   "packageManager": "pnpm@10.33.2",
   "files": [
     "built",
