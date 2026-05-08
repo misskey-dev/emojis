@@ -42,11 +42,7 @@
   "packageManager": "pnpm@10.33.2",
   "files": [
     "built",
-    "LICENSE-CODE",
-    "LICENSE-CLDR",
-    "LICENSE-FLUENT-EMOJI",
-    "LICENSE-TWEMOJI",
-    "LICENSE-TWEMOJI-PARSER"
+    "LICENSE-*"
   ],
   "devDependencies": {
     "@twemoji/parser": "^17.0.1",

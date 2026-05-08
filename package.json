@@ -11,22 +11,9 @@
   "author": "Misskey Project",
   "license": "See LICENSE for details.",
   "packageManager": "pnpm@10.33.2",
-  "files": [
-    "built",
-    "LICENSE-CODE",
-    "LICENSE-FLUENT-EMOJI",
-    "LICENSE-TWEMOJI",
-    "LICENSE-TWEMOJI-PARSER"
-  ],
   "devDependencies": {
     "@types/node": "^24.12.2",
     "tsx": "^4.21.0",
     "typescript": "^6.0.3"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "sharp"
-    ]
   }
 }

@@ -19,10 +19,7 @@
   "packageManager": "pnpm@10.33.2",
   "files": [
     "built",
-    "LICENSE-CODE",
-    "LICENSE-FLUENT-EMOJI",
-    "LICENSE-TWEMOJI",
-    "LICENSE-TWEMOJI-PARSER"
+    "LICENSE-*"
   ],
   "devDependencies": {
     "sharp": "^0.34.5"
