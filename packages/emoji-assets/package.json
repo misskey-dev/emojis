@@ -1,6 +1,6 @@
 {
   "name": "@misskey-dev/emoji-assets",
-  "version": "17.0.2",
+  "version": "17.0.3",
   "description": "A set of emoji assets intended for use in Misskey.",
   "exports": {
     "./fluent-emoji/*.png": "./built/fluent-emoji/*.png",
@@ -19,10 +19,7 @@
   "packageManager": "pnpm@10.33.2",
   "files": [
     "built",
-    "LICENSE-CODE",
-    "LICENSE-FLUENT-EMOJI",
-    "LICENSE-TWEMOJI",
-    "LICENSE-TWEMOJI-PARSER"
+    "LICENSE-*"
   ],
   "devDependencies": {
     "sharp": "^0.34.5"

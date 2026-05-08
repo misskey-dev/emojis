@@ -1,6 +1,6 @@
 {
   "name": "@misskey-dev/emoji-data",
-  "version": "17.0.2",
+  "version": "17.0.3",
   "description": "A set of emoji definitions intended for use in Misskey.",
   "main": "built/index.cjs",
   "module": "built/index.mjs",
@@ -42,18 +42,14 @@
   "packageManager": "pnpm@10.33.2",
   "files": [
     "built",
-    "LICENSE-CODE",
-    "LICENSE-CLDR",
-    "LICENSE-FLUENT-EMOJI",
-    "LICENSE-TWEMOJI",
-    "LICENSE-TWEMOJI-PARSER"
+    "LICENSE-*"
   ],
   "devDependencies": {
     "@twemoji/parser": "^17.0.1",
     "cldr-annotations-derived-full": "^48.2.0",
     "cldr-annotations-full": "^48.2.0",
     "kuromojin": "^3.0.1",
-    "tsdown": "^0.21.10",
+    "tsdown": "^0.22.0",
     "wanakana": "^5.3.1"
   }
 }
