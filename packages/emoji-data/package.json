@@ -53,7 +53,7 @@
     "cldr-annotations-derived-full": "^48.2.0",
     "cldr-annotations-full": "^48.2.0",
     "kuromojin": "^3.0.1",
-    "tsdown": "^0.21.10",
+    "tsdown": "^0.22.0",
     "wanakana": "^5.3.1"
   }
 }
