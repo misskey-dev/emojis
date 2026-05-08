@@ -13,4 +13,5 @@ available under the licenses stated in the following files, respectively:
 - Twemoji: LICENSE-TWEMOJI
 - Build code: LICENSE-CODE
 
-Please note that there may be 
+Please note that, due to the build process, a license file may be included
+for a work that is actually contained in one package but not in the other.
