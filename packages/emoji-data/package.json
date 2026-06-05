@@ -1,6 +1,6 @@
 {
   "name": "@misskey-dev/emoji-data",
-  "version": "17.0.3",
+  "version": "17.0.4",
   "description": "A set of emoji definitions intended for use in Misskey.",
   "main": "built/index.cjs",
   "module": "built/index.mjs",
@@ -38,18 +38,18 @@
     "update-definitions": "tsx ./scripts/emojilist-indexes-updater/index.ts"
   },
   "author": "Misskey Project",
-  "license": "MIT AND CC-BY-4.0 AND Unicode-3.0",
+  "license": "MIT AND Unicode-3.0",
   "packageManager": "pnpm@10.33.2",
   "files": [
     "built",
     "LICENSE-*"
   ],
   "devDependencies": {
-    "@twemoji/parser": "^17.0.1",
+    "@twemoji/parser": "^17.0.2",
     "cldr-annotations-derived-full": "^48.2.0",
     "cldr-annotations-full": "^48.2.0",
     "kuromojin": "^3.0.1",
-    "tsdown": "^0.22.0",
+    "tsdown": "^0.22.2",
     "wanakana": "^5.3.1"
   }
 }
