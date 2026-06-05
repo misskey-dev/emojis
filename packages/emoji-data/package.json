@@ -45,11 +45,11 @@
     "LICENSE-*"
   ],
   "devDependencies": {
-    "@twemoji/parser": "^17.0.1",
+    "@twemoji/parser": "^17.0.2",
     "cldr-annotations-derived-full": "^48.2.0",
     "cldr-annotations-full": "^48.2.0",
     "kuromojin": "^3.0.1",
-    "tsdown": "^0.22.0",
+    "tsdown": "^0.22.2",
     "wanakana": "^5.3.1"
   }
 }
