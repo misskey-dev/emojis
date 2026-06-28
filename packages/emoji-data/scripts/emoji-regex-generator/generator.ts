@@ -225,7 +225,14 @@ export function generateRegexView(yamlContent: string): Record<string, string> {
     if (!cat.items) continue;
     for (const item of cat.items) {
       const codepoints = item.unicode.split('-').map((v: string) => parseInt(v, 16));
-      const emojiType = item.type || 'normal';
+      let emojiType = item.type || 'normal'; 
+
+      // text-defaultでもvariantとして扱うようにする（VS16の有無にかかわらずマッチさせるため）
+      if (emojiType === 'text-default') {
+        emojiType = 'variant';
+      } else if (emojiType === 'text-default,diversity') {
+        emojiType = 'variant,diversity';
+      }
       
       let multiDiversityConfig;
       if (emojiType === 'multi-diversity') {
