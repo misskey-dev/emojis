@@ -51,7 +51,7 @@
     "js-yaml": "^5.2.0",
     "kuromojin": "^3.0.1",
     "mustache": "^4.2.0",
-    "tsdown": "^0.22.2",
+    "tsdown": "^0.22.3",
     "wanakana": "^5.3.1"
   }
 }
