@@ -45,10 +45,12 @@
     "LICENSE-*"
   ],
   "devDependencies": {
-    "@twemoji/parser": "^17.0.2",
+    "@types/mustache": "^4.2.6",
     "cldr-annotations-derived-full": "^48.2.0",
     "cldr-annotations-full": "^48.2.0",
+    "js-yaml": "^5.2.0",
     "kuromojin": "^3.0.1",
+    "mustache": "^4.2.0",
     "tsdown": "^0.22.2",
     "wanakana": "^5.3.1"
   }
