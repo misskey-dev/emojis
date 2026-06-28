@@ -1,4 +1,5 @@
 import { load } from 'js-yaml';
+import { forceTreatAsTextDefault } from './data.js';
 
 // Unicode constants
 export const SkinTones = [0x1f3fb, 0x1f3fc, 0x1f3fd, 0x1f3fe, 0x1f3ff];
@@ -228,10 +229,12 @@ export function generateRegexView(yamlContent: string): Record<string, string> {
             let emojiType = item.type || 'normal';
 
             // text-defaultでもvariantとして扱うようにする（VS16の有無にかかわらずマッチさせるため）
-            if (emojiType === 'text-default') {
-                emojiType = 'variant';
-            } else if (emojiType === 'text-default,diversity') {
-                emojiType = 'variant,diversity';
+            if (!forceTreatAsTextDefault.includes(item.unicode)) {
+                if (emojiType === 'text-default') {
+                    emojiType = 'variant';
+                } else if (emojiType === 'text-default,diversity') {
+                    emojiType = 'variant,diversity';
+                }
             }
 
             let multiDiversityConfig;
