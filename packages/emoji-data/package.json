@@ -35,8 +35,7 @@
   },
   "scripts": {
     "build": "tsdown --config-loader unrun",
-    "update-definitions": "tsx ./scripts/emojilist-indexes-updater/index.ts",
-    "generate-regex": "tsx ./scripts/emoji-regex-generator/index.ts"
+    "update-definitions": "tsx ./scripts/emojilist-indexes-updater/index.ts"
   },
   "author": "Misskey Project",
   "license": "MIT AND Unicode-3.0",
