@@ -3,6 +3,7 @@ import { generateEmojiRegex } from './scripts/emoji-regex-generator/index';
 
 export default defineConfig(() => {
     let isFirstRun = true;
+    let generateRegexPromise: Promise<void> | null = null;
 
     return {
         entry: {
@@ -34,7 +35,13 @@ export default defineConfig(() => {
             'build:prepare': async () => {
                 if (isFirstRun) {
                     isFirstRun = false;
-                    await generateEmojiRegex();
+                    generateRegexPromise = generateEmojiRegex().finally(() => {
+                        generateRegexPromise = null;
+                    });
+                }
+
+                if (generateRegexPromise != null) {
+                    await generateRegexPromise;
                 }
             },
         },
