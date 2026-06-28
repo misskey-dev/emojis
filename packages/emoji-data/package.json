@@ -45,7 +45,6 @@
     "LICENSE-*"
   ],
   "devDependencies": {
-    "@twemoji/parser": "^17.0.2",
     "@types/mustache": "^4.2.6",
     "cldr-annotations-derived-full": "^48.2.0",
     "cldr-annotations-full": "^48.2.0",

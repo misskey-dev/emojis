@@ -26,9 +26,6 @@ importers:
 
   packages/emoji-data:
     devDependencies:
-      '@twemoji/parser':
-        specifier: ^17.0.2
-        version: 17.0.2
       '@types/mustache':
         specifier: ^4.2.6
         version: 4.2.6
@@ -633,9 +630,6 @@ packages:
 
   '@rolldown/pluginutils@1.0.1':
     resolution: {integrity: sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==}
-
-  '@twemoji/parser@17.0.2':
-    resolution: {integrity: sha512-X/P7pHsGOxnrupQYUVetIeuxBGgffFu8CLwoPMMjH9CWmQvlXiCpbTW/BXxMOCWXQojgHdmgdvm6IsCqAQ5nxA==}
 
   '@tybys/wasm-util@0.10.2':
     resolution: {integrity: sha512-RoBvJ2X0wuKlWFIjrwffGw1IqZHKQqzIchKaadZZfnNpsAYp2mM0h36JtPCjNDAHGgYez/15uMBpfGwchhiMgg==}
@@ -1289,8 +1283,6 @@ snapshots:
     optional: true
 
   '@rolldown/pluginutils@1.0.1': {}
-
-  '@twemoji/parser@17.0.2': {}
 
   '@tybys/wasm-util@0.10.2':
     dependencies:
