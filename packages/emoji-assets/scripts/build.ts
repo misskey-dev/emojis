@@ -73,6 +73,11 @@ async function build() {
     await fsp.cp(twemojiSrc, twemojiDest, { recursive: true });
     console.log(`Copied Twemoji SVGs from ${twemojiSrc} to ${twemojiDest}`);
 
+    // 3.5. Twemojiの目の絵文字修正
+    // submodule更新のタイミングで消すこと
+    // https://github.com/jdecked/twemoji/issues/151
+    await fsp.cp(resolve(twemojiDest, '1f441-200d-1f5e8.svg'), resolve(twemojiDest, '1f441-fe0f-200d-1f5e8-fe0f.svg'), { force: true });
+
     // 4. Fluent Emojiのコピー
     const definitions = fsp.glob(`${import.meta.dirname}/../../../fluent-emoji/assets/*/metadata.json`);
     const fluentEmojiDest = resolve(assetsBuiltDir, 'fluent-emoji');
