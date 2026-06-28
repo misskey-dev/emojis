@@ -3,8 +3,6 @@ import { forceTreatAsTextDefault } from './data.js';
 
 // Unicode constants
 export const SkinTones = [0x1f3fb, 0x1f3fc, 0x1f3fd, 0x1f3fe, 0x1f3ff];
-export const Zwj = 0x200d;
-export const VS16 = 0xfe0f;
 export const RightDirectionalZwjSeq = [0x200d, 0x27a1, 0xfe0f];
 
 export const KeycapCodePoint = 0x20e3;
@@ -142,7 +140,7 @@ export function regexFromCodepointSequences(codePointSequences: number[][], isUC
 export function getDiversitySequences(item: EmojiItem): number[][] {
     const { codepoints, emojiType, multiDiversityConfig } = item;
 
-    const hasZeroWidthJoiner = codepoints.includes(Zwj);
+    const hasZeroWidthJoiner = codepoints.includes(ZwjCodePoint);
     const hasDirectionality = ['directional', 'directional,diversity'].includes(emojiType);
 
     if (['diversity', 'directional,diversity', 'variant,diversity'].includes(emojiType)) {
@@ -150,11 +148,11 @@ export function getDiversitySequences(item: EmojiItem): number[][] {
         for (const suffix of SkinTones) {
             let diversityCodepoints: number[];
             if (hasZeroWidthJoiner) {
-                const firstZwjIndex = codepoints.indexOf(Zwj);
+                const firstZwjIndex = codepoints.indexOf(ZwjCodePoint);
                 const before = codepoints.slice(0, firstZwjIndex);
                 const after = codepoints.slice(firstZwjIndex);
                 diversityCodepoints = [
-                    ...before.filter(v => v !== VS16),
+                    ...before.filter(v => v !== VS16CodePoint),
                     suffix,
                     ...after
                 ];
@@ -256,8 +254,8 @@ export function generateRegexView(yamlContent: string): Record<string, string> {
 
     const multiDiversityItems = emojiItems.filter(v => v.emojiType === 'multi-diversity');
     const nonMultiDiversityItems = emojiItems.filter(v => v.emojiType !== 'multi-diversity');
-    const zwjItems = nonMultiDiversityItems.filter(v => v.codepoints.includes(Zwj));
-    const nonZwjItems = nonMultiDiversityItems.filter(v => !v.codepoints.includes(Zwj));
+    const zwjItems = nonMultiDiversityItems.filter(v => v.codepoints.includes(ZwjCodePoint));
+    const nonZwjItems = nonMultiDiversityItems.filter(v => !v.codepoints.includes(ZwjCodePoint));
 
     const zwjDiversityItems = zwjItems.filter(
         item => item.emojiType === 'diversity' || item.emojiType === 'directional,diversity'
