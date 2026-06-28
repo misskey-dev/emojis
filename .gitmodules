@@ -4,3 +4,6 @@
 [submodule "twemoji"]
 	path = twemoji
 	url = https://github.com/jdecked/twemoji
+[submodule "twemoji-parser"]
+	path = twemoji-parser
+	url = https://github.com/jdecked/twemoji-parser
