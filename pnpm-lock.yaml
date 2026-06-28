@@ -29,6 +29,9 @@ importers:
       '@twemoji/parser':
         specifier: ^17.0.2
         version: 17.0.2
+      '@types/mustache':
+        specifier: ^4.2.6
+        version: 4.2.6
       cldr-annotations-derived-full:
         specifier: ^48.2.0
         version: 48.2.0
@@ -41,6 +44,9 @@ importers:
       kuromojin:
         specifier: ^3.0.1
         version: 3.0.1
+      mustache:
+        specifier: ^4.2.0
+        version: 4.2.0
       tsdown:
         specifier: ^0.22.2
         version: 0.22.2(tsx@4.22.4)(typescript@6.0.3)(unrun@0.2.37)
@@ -640,6 +646,9 @@ packages:
   '@types/jsesc@2.5.1':
     resolution: {integrity: sha512-9VN+6yxLOPLOav+7PwjZbxiID2bVaeq0ED4qSQmdQTdjnXJSaCVKTR58t15oqH1H5t8Ng2ZX1SabJVoN9Q34bw==}
 
+  '@types/mustache@4.2.6':
+    resolution: {integrity: sha512-t+8/QWTAhOFlrF1IVZqKnMRJi84EgkIK5Kh0p2JV4OLywUvCwJPFxbJAl7XAow7DVIHsF+xW9f1MVzg0L6Szjw==}
+
   '@types/node@24.13.0':
     resolution: {integrity: sha512-5vtOqGQr4NJKeEzV441FcOi2MeG9UTWq9LqVLGneDdu4vlX17H8kQ2PA2UmNwCUGPVDj4oBjNhS7ReVEIWJJrg==}
 
@@ -757,6 +766,10 @@ packages:
 
   lru_map@0.4.1:
     resolution: {integrity: sha512-I+lBvqMMFfqaV8CJCISjI3wbjmwVu/VyOoU7+qtu9d7ioW5klMgsTTiUOUp+DJvfTTzKXoPbyC6YfgkNcyPSOg==}
+
+  mustache@4.2.0:
+    resolution: {integrity: sha512-71ippSywq5Yb7/tVYyGbkBggbU8H3u5Rz56fH60jGFgr8uHwxs+aSKeqmluIVzM0m0kB7xQjKS6qPfd0b2ZoqQ==}
+    hasBin: true
 
   node-localstorage@2.2.1:
     resolution: {integrity: sha512-vv8fJuOUCCvSPjDjBLlMqYMHob4aGjkmrkaE42/mZr0VT+ZAU10jRF8oTnX9+pgU9/vYJ8P7YT3Vd6ajkmzSCw==}
@@ -1288,6 +1301,8 @@ snapshots:
 
   '@types/jsesc@2.5.1': {}
 
+  '@types/mustache@4.2.6': {}
+
   '@types/node@24.13.0':
     dependencies:
       undici-types: 7.18.2
@@ -1399,6 +1414,8 @@ snapshots:
   lodash@4.18.1: {}
 
   lru_map@0.4.1: {}
+
+  mustache@4.2.0: {}
 
   node-localstorage@2.2.1:
     dependencies:

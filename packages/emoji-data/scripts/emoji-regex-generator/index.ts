@@ -1,19 +1,7 @@
 import { resolve } from 'node:path';
 import { promises as fsp } from 'node:fs';
+import Mustache from 'mustache';
 import { generateRegexView } from './generator.js';
-
-function renderTemplate(template: string, view: Record<string, any>): string {
-  return template.replace(/\{\{(?:![\s\S]*?|([\s\S]*?))\}\}/g, (match, key) => {
-    if (key === undefined) {
-      return '';
-    }
-    const trimmedKey = key.trim();
-    if (trimmedKey in view) {
-      return String(view[trimmedKey]);
-    }
-    return '';
-  });
-}
 
 export async function generateEmojiRegex(): Promise<void> {
   const __dirname = import.meta.dirname;
@@ -31,7 +19,7 @@ export async function generateEmojiRegex(): Promise<void> {
   const templateContent = await fsp.readFile(templatePath, 'utf8');
 
   console.log('Rendering template...');
-  const renderedContent = renderTemplate(templateContent, view);
+  const renderedContent = Mustache.render(templateContent, view);
 
   console.log(`Writing output to ${outputPath}...`);
   const parentDir = resolve(outputPath, '..');
