@@ -1,5 +1,5 @@
 import { load } from 'js-yaml';
-import { forceTreatAsTextDefault } from './data.js';
+import { additionalEmojiSequencesByUnicode, forceTreatAsTextDefault } from './data.js';
 
 // Unicode constants
 export const SkinTones = [0x1f3fb, 0x1f3fc, 0x1f3fd, 0x1f3fe, 0x1f3ff];
@@ -249,6 +249,15 @@ export function generateRegexView(yamlContent: string): Record<string, string> {
                 emojiType,
                 multiDiversityConfig,
             });
+
+            const additionalSequences = additionalEmojiSequencesByUnicode[item.unicode] ?? [];
+            for (const sequence of additionalSequences) {
+                emojiItems.push({
+                    codepoints: sequence.split('-').map(v => parseInt(v, 16)),
+                    emojiType,
+                    multiDiversityConfig,
+                });
+            }
         }
     }
 
