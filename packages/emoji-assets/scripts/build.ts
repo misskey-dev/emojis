@@ -74,10 +74,13 @@ async function build() {
     console.log(`Copied Twemoji SVGs from ${twemojiSrc} to ${twemojiDest}`);
 
     // 3.5. Twemojiの目の絵文字修正
-    // submodule更新のタイミングで消すこと
     // https://github.com/jdecked/twemoji/issues/151
     if (existsSync(resolve(twemojiSrc, '1f441-200d-1f5e8.svg'))) {
+        // Issue対応されるまでの間、現twemoji parserでマッチする形のファイル名でも格納
         await fsp.cp(resolve(twemojiSrc, '1f441-200d-1f5e8.svg'), resolve(twemojiDest, '1f441-fe0f-200d-1f5e8-fe0f.svg'), { force: true });
+    } else if (existsSync(resolve(twemojiSrc, '1f441-fe0f-200d-1f5e8-fe0f.svg'))) {
+        // Issue対応後、旧twemoji parserでマッチする形のファイル名でも格納
+        await fsp.cp(resolve(twemojiSrc, '1f441-fe0f-200d-1f5e8-fe0f.svg'), resolve(twemojiDest, '1f441-200d-1f5e8.svg'), { force: true });
     }
 
     // 4. Fluent Emojiのコピー
