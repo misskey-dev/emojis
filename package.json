@@ -1,6 +1,6 @@
 {
   "name": "emojis-monorepo",
-  "version": "17.0.5",
+  "version": "17.0.6",
   "description": "A set of emojis and definitions intended for use in Misskey.",
   "private": true,
   "type": "module",
@@ -13,7 +13,7 @@
   "packageManager": "pnpm@11.9.0",
   "devDependencies": {
     "@types/node": "^24.13.2",
-    "tsx": "^4.22.4",
+    "tsx": "^4.23.0",
     "typescript": "^6.0.3"
   }
 }
