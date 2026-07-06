@@ -1,6 +1,6 @@
 {
   "name": "@misskey-dev/emoji-data",
-  "version": "17.0.5",
+  "version": "17.0.6",
   "description": "A set of emoji definitions intended for use in Misskey.",
   "main": "built/index.cjs",
   "module": "built/index.mjs",

@@ -1,6 +1,6 @@
 {
   "name": "emojis-monorepo",
-  "version": "17.0.5",
+  "version": "17.0.6",
   "description": "A set of emojis and definitions intended for use in Misskey.",
   "private": true,
   "type": "module",

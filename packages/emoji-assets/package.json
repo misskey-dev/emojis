@@ -1,6 +1,6 @@
 {
   "name": "@misskey-dev/emoji-assets",
-  "version": "17.0.5",
+  "version": "17.0.6",
   "description": "A set of emoji assets intended for use in Misskey.",
   "exports": {
     "./fluent-emoji/*.png": "./built/fluent-emoji/*.png",
